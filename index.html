@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visak Kumar</title>
+<meta name="description" content="Visak Kumar: research on machine learning for robotics and physics-based character animation.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Visak Kumar">
+<meta property="og:description" content="Research on machine learning for robotics and physics-based character animation.">
+<meta property="og:image" content="https://visakk.github.io/assets/img/profile.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300897B'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EVK%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f5f7f8;
+    --ink: #1c2732;
+    --muted: #5b6874;
+    --rule: #dde3e7;
+    --teal: #00897b;
+    --teal-ink: #006b60;
+    --media: #0e1116;
+    --nav: rgba(255, 255, 255, 0.92);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1418;
+      --surface: #172027;
+      --ink: #e6edf2;
+      --muted: #9aa8b4;
+      --rule: #2a3640;
+      --teal: #3fb8a8;
+      --teal-ink: #5fd0c0;
+      --media: #0a0d10;
+      --nav: rgba(15, 20, 24, 0.92);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--teal-ink); }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+  nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: var(--nav); backdrop-filter: saturate(1.4) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 54px; flex-wrap: wrap; }
+  nav .brand { font-weight: 700; color: var(--ink); text-decoration: none; }
+  nav ul { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 0; padding: 6px 0; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+  nav ul a:hover { color: var(--ink); }
+
+  .hero { display: grid; grid-template-columns: 190px 1fr; gap: 36px; align-items: center; padding: 56px 0 18px; }
+  .hero img { width: 190px; height: 190px; border-radius: 50%; object-fit: cover; display: block; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 2.6rem); line-height: 1.15; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .hero .role { color: var(--muted); font-size: 1.1rem; margin: 0 0 14px; }
+  .hero p.bio { margin: 0 0 18px; }
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; gap: 20px; padding-top: 36px; justify-items: center; text-align: center; }
+    .hero img { width: 150px; height: 150px; }
+    .links { justify-content: center; }
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 15px; border-radius: 999px;
+    border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+    text-decoration: none; font-weight: 600; font-size: 0.92rem;
+  }
+  .pill:hover { border-color: var(--teal); }
+  .pill svg { width: 16px; height: 16px; }
+
+  section { padding: 40px 0 8px; }
+  h2 { font-size: 1.6rem; margin: 0 0 18px; letter-spacing: -0.005em; }
+  h3 { font-size: 1.15rem; margin: 26px 0 10px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card { border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
+  .card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.25fr 1fr; }
+  @media (max-width: 760px) { .card.featured { grid-template-columns: 1fr; } }
+  .media { background: var(--media); aspect-ratio: 16 / 9; display: grid; }
+  .media.two { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .media video { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .card .body { padding: 16px 18px 18px; }
+  .card h3 { margin: 0 0 6px; font-size: 1.08rem; line-height: 1.35; }
+  .card p { margin: 0 0 10px; font-size: 0.95rem; color: var(--ink); }
+  .tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 6px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 0.92rem; font-weight: 600; }
+  .actions a { text-decoration: none; }
+  .actions a:hover { text-decoration: underline; }
+
+  .pubs { list-style: none; margin: 0; padding: 0; }
+  .pubs li { padding: 12px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 64px 1fr; gap: 12px; }
+  .pubs .yr { color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 600; }
+  .pubs .t { font-weight: 650; }
+  .pubs .a, .pubs .v { color: var(--muted); font-size: 0.93rem; }
+  .pubs .a b { color: var(--ink); font-weight: 650; }
+  .pubs .actions { margin-top: 4px; }
+  @media (max-width: 520px) { .pubs li { grid-template-columns: 1fr; gap: 2px; } }
+
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline > li { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .timeline ul.bul { margin: 6px 0 0; padding-left: 18px; font-size: 0.95rem; }
+  .timeline ul.bul li { padding: 2px 0; }
+  .timeline .when { color: var(--muted); font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+  .timeline .what b { font-weight: 650; }
+  .timeline .where { color: var(--muted); font-size: 0.93rem; }
+  .timeline p { margin: 4px 0 0; font-size: 0.95rem; }
+  @media (max-width: 560px) { .timeline > li { grid-template-columns: 1fr; gap: 2px; } }
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 18px; }
+  .skills div { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 16px; }
+  .skills b { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 2px; }
+
+  footer { color: var(--muted); font-size: 0.88rem; padding: 30px 0 48px; border-top: 1px solid var(--rule); margin-top: 44px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Visak Kumar</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+<header class="hero">
+  <img src="assets/img/profile.jpg" alt="Portrait of Visak Kumar" width="190" height="190">
+  <div>
+    <h1>Visak Kumar</h1>
+    <p class="role">Senior Research Scientist, Woven by Toyota</p>
+    <p class="bio">I am a Senior Research Scientist at Woven by Toyota, focusing on the application of machine learning in
+      autonomous driving. Before, I worked at the Toyota Research Institute. I obtained my PhD in robotics from Georgia
+      Tech, where I was advised by Dr. Karen Liu and Dr. Sehoon Ha. My research interests include physics-based
+      computer animation, machine learning and robotics.</p>
+    <div class="links">
+      <a class="pill" href="https://scholar.google.com/citations?user=bAn6bEYAAAAJ&amp;hl=en">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-6.5 9.6V16c0 1.9 3 3.5 6.5 3.5s6.5-1.6 6.5-3.5v-3.4L12 16.2l-6.5-3.6z"/></svg>
+        Google Scholar</a>
+      <a class="pill" href="https://www.linkedin.com/in/visakcvkumar/">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.86 2.6 4.86 6V21h-4v-5.07c0-1.21-.02-2.77-1.7-2.77-1.7 0-1.96 1.32-1.96 2.68V21h-4z"/></svg>
+        LinkedIn</a>
+      <a class="pill" href="assets/cv/Visak_Kumar_CV.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+        CV</a>
+      <a class="pill" href="mailto:vishak.vk@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        vishak.vk@gmail.com</a>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+
+    <article class="card featured">
+      <div class="media">
+        <video src="/pose-is-not-support/assets/video/teaser.mp4" poster="/pose-is-not-support/assets/img/teaser_poster.jpg" muted loop playsinline autoplay aria-label="Yoga holds performed by a simulated humanoid"></video>
+      </div>
+      <div class="body">
+        <span class="tag">New &middot; 2026</span>
+        <h3>Pose Is Not Support: Do Learned Whole-Body Controllers Follow Revised Support Commands?</h3>
+        <p>A simulated yoga testbed of arm balances, inversions and single-leg balances from human capture, with five
+          synthesized transitions. A goal-conditioned teacher and a distilled student are tested on commands revised
+          mid-skill, with the commanded supports scored by load as well as pose.</p>
+        <div class="actions"><a href="/pose-is-not-support/">Project page</a><a href="/pose-is-not-support/assets/pose_is_not_support.pdf">Paper</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media"><video src="assets/projects/sim2real_quadruped.mp4" poster="assets/projects/sim2real_quadruped.jpg" muted loop playsinline autoplay aria-label="Quadruped robot walking"></video></div>
+      <div class="body">
+        <h3>Sim-to-Real Transfer for Robots</h3>
+        <p>Developed reinforcement learning based algorithms that enable learning bipedal and quadrupedal walking
+          controllers.</p>
+        <div class="actions"><a href="https://arxiv.org/abs/1903.01390">Bipedal sim-to-real</a><a href="https://arxiv.org/abs/2103.07732">Quadruped sim-to-real</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media"><video src="assets/projects/safe_falling.mp4" poster="assets/projects/safe_falling.jpg" muted loop playsinline autoplay aria-label="Simulated humanoid falling safely"></video></div>
+      <div class="body">
+        <h3>Learning Safe-Falling Strategies for Humanoids</h3>
+        <p>We develop an off-policy reinforcement learning algorithm with a mixture of actor-critic experts to teach
+          robots how to fall by minimizing impulse.</p>
+        <div class="actions"><a href="https://arxiv.org/abs/1703.02905">Paper</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media"><video src="assets/projects/push_recovery.mp4" poster="assets/projects/push_recovery.jpg" muted loop playsinline autoplay aria-label="Simulated humanoid balancing after a push"></video></div>
+      <div class="body">
+        <h3>Improving Humanoid Safety by Combining Model-Based Control with Reinforcement Learning</h3>
+        <p>We develop an algorithm to teach robots to balance without falling when an external push is applied. We
+          combine model-based control inputs with model-free policy learning to improve performance, and present a
+          curriculum that enables efficient learning.</p>
+        <div class="actions"><a href="https://ieeexplore.ieee.org/abstract/document/8463209">Paper</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media two">
+        <video src="assets/projects/joint_space_reach.mp4" poster="assets/projects/joint_space_reach.jpg" muted loop playsinline autoplay aria-label="Robot arm reaching a target"></video>
+        <video src="assets/projects/joint_space_obstacles.mp4" poster="assets/projects/joint_space_obstacles.jpg" muted loop playsinline autoplay aria-label="Robot arm reaching around obstacles"></video>
+      </div>
+      <div class="body">
+        <h3>Joint Space Control</h3>
+        <p>We develop a curriculum learning algorithm to learn joint space control of robot manipulators that achieves
+          low end-effector error (&lt;1&nbsp;cm), generates smooth control comparable to operational space control, and
+          avoids obstacles.</p>
+        <div class="actions"><a href="https://arxiv.org/abs/2011.06332">Paper</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media"><video src="assets/projects/assistive_device.mp4" poster="assets/projects/assistive_device.jpg" muted loop playsinline autoplay aria-label="Simulated person walking with a lower-limb exoskeleton"></video></div>
+      <div class="body">
+        <h3>Learning to Prevent Falls with an Assistive Device</h3>
+        <p>We develop a reinforcement learning algorithm to learn a fall-prevention control policy for an assistive
+          device such as a lower-limb exoskeleton.</p>
+        <div class="actions"><a href="https://arxiv.org/abs/1909.10488">Paper</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media"><video src="assets/projects/visuotactile_grasp.mp4" poster="assets/projects/visuotactile_grasp.jpg" muted loop playsinline autoplay aria-label="Multi-fingered robot hand grasping a bottle"></video></div>
+      <div class="body">
+        <h3>Visuo-Tactile Control Policy for a Multi-Fingered Robot Hand</h3>
+        <p>We investigated the effect of incorporating different sensing modalities, such as touch and vision, on policy
+          performance in tasks such as grasping on a real-world Kuka-Allegro robot system.</p>
+        <div class="actions"><a href="https://arxiv.org/abs/1911.09233">Paper</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media"><video src="assets/projects/treadmill.mp4" poster="assets/projects/treadmill.jpg" muted loop playsinline autoplay aria-label="Simulated person walking on a treadmill"></video></div>
+      <div class="body">
+        <h3>Learning to Walk on a Treadmill</h3>
+        <p>We learn a control policy to create human agents that can walk on a treadmill in simulation. The
+          biomechanical gait characteristics of the human agent are similar to real-world human walking.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="publications">
+  <h2>Publications</h2>
+  <ul class="pubs">
+    <li><span class="yr">2026</span><div>
+      <div class="t">Pose Is Not Support: Do Learned Whole-Body Controllers Follow Revised Support Commands?</div>
+      <div class="a"><b>V. Kumar</b></div>
+      <div class="v">Workshop submission, CoRL 2026 Workshop on Open Problems in Contact-Rich Loco-Manipulation</div>
+      <div class="actions"><a href="/pose-is-not-support/">Project page</a><a href="/pose-is-not-support/assets/pose_is_not_support.pdf">Paper</a></div>
+    </div></li>
+    <li><span class="yr">2023</span><div>
+      <div class="t">Group Distributionally Robust Reinforcement Learning with Hierarchical Latent Variables</div>
+      <div class="a">M. Xu, P. Huang, Y. Niu, <b>V. Kumar</b>, J. Qiu, C. Fang, K.-H. Lee, X. Qi, H. Lam, B. Li, D. Zhao</div>
+      <div class="v">International Conference on Artificial Intelligence and Statistics (AISTATS), 2023</div>
+      <div class="actions"><a href="https://proceedings.mlr.press/v206/xu23d.html">PMLR</a><a href="https://arxiv.org/abs/2210.12262">arXiv</a></div>
+    </div></li>
+    <li><span class="yr">2021</span><div>
+      <div class="t">Error-Aware Policy Learning: Zero-Shot Generalization in Partially Observable Dynamic Environments</div>
+      <div class="a"><b>V. Kumar</b>, S. Ha, C. K. Liu</div>
+      <div class="v">Robotics: Science and Systems (RSS), 2021</div>
+      <div class="actions"><a href="https://arxiv.org/abs/2103.07732">arXiv</a></div>
+    </div></li>
+    <li><span class="yr">2021</span><div>
+      <div class="t">Joint Space Control via Deep Reinforcement Learning</div>
+      <div class="a"><b>V. Kumar</b>, D. Hoeller, B. Sundaralingam, J. Tremblay, S. Birchfield</div>
+      <div class="v">IROS 2021</div>
+      <div class="actions"><a href="https://arxiv.org/abs/2011.06332">arXiv</a></div>
+    </div></li>
+    <li><span class="yr">2020</span><div>
+      <div class="t">Contextual Reinforcement Learning of Visuo-Tactile Multi-Fingered Grasping Policies</div>
+      <div class="a"><b>V. Kumar</b>, T. Hermans, D. Fox, S. Birchfield, J. Tremblay</div>
+      <div class="v">NeurIPS 2020 Workshop</div>
+      <div class="actions"><a href="https://arxiv.org/abs/1911.09233">arXiv</a></div>
+    </div></li>
+    <li><span class="yr">2020</span><div>
+      <div class="t">Learning a Control Policy for Fall Prevention on an Assistive Walking Device</div>
+      <div class="a"><b>V. Kumar</b>, S. Ha, G. Sawicki, C. K. Liu</div>
+      <div class="v">ICRA 2020</div>
+      <div class="actions"><a href="https://arxiv.org/abs/1909.10488">arXiv</a></div>
+    </div></li>
+    <li><span class="yr">2019</span><div>
+      <div class="t">Sim-to-Real Transfer for Biped Locomotion</div>
+      <div class="a">W. Yu, <b>V. Kumar</b>, G. Turk, C. K. Liu</div>
+      <div class="v">IROS 2019</div>
+      <div class="actions"><a href="https://arxiv.org/abs/1903.01390">arXiv</a></div>
+    </div></li>
+    <li><span class="yr">2018</span><div>
+      <div class="t">Expanding Motor Skills using Relay Networks</div>
+      <div class="a"><b>V. Kumar</b>, S. Ha, C. K. Liu</div>
+      <div class="v">Conference on Robot Learning (CoRL), 2018</div>
+      <div class="actions"><a href="http://proceedings.mlr.press/v87/kumar18a.html">PMLR</a></div>
+    </div></li>
+    <li><span class="yr">2018</span><div>
+      <div class="t">Improving Model-Based Balance Controllers Using Reinforcement Learning and Adaptive Sampling</div>
+      <div class="a"><b>V. Kumar</b>, S. Ha, K. Yamane</div>
+      <div class="v">ICRA 2018</div>
+      <div class="actions"><a href="https://ieeexplore.ieee.org/abstract/document/8463209">IEEE</a></div>
+    </div></li>
+    <li><span class="yr">2017</span><div>
+      <div class="t">Learning a Unified Control Policy for Safe Falling</div>
+      <div class="a"><b>V. Kumar</b>, S. Ha, C. K. Liu</div>
+      <div class="v">IROS 2017</div>
+      <div class="actions"><a href="https://arxiv.org/abs/1703.02905">arXiv</a></div>
+    </div></li>
+  </ul>
+
+  <h3>Manuscripts</h3>
+  <ul class="pubs">
+    <li><span class="yr"></span><div>
+      <div class="t">High Performance Pneumatics using Model Predictive Control</div>
+      <div class="a">Vikash Kumar, <b>Visak C. V. Kumar</b>, Emanuel Todorov</div>
+      <div class="actions"><a href="https://vikashplus.github.io/Projects/Hand/penuumaticsViaMPC.pdf">PDF</a></div>
+    </div></li>
+    <li><span class="yr"></span><div>
+      <div class="t">Precise Calibration of Robots with Small Link Lengths using Kinematic Extensions</div>
+      <div class="a"><b>Visak C. V. Kumar</b>, Vikash Kumar</div>
+      <div class="actions"><a href="https://vikashplus.github.io/Projects/kinematicExtension/kinematicExtension.pdf">PDF</a></div>
+    </div></li>
+  </ul>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <ul class="timeline">
+    <li><span class="when">May 2022 &ndash; Present</span><div class="what"><b>Senior Research Scientist</b> &middot; ML Behavior team, Woven by Toyota
+      <div class="where">Palo Alto, CA</div>
+      <ul class="bul">
+        <li>Designed, trained, and deployed end-to-end machine learning models for autonomous driving.</li>
+        <li>Developed machine learning models for vehicle motion prediction.</li>
+        <li>Designed a large-scale distributed evaluation framework for end-to-end driving policies, enabling rapid,
+          data-driven iteration and model selection.</li>
+        <li>Led the design and implementation of large-scale distributed data curation workflows for ML prediction
+          models, improving operational efficiency and downstream model performance.</li>
+        <li>Developed and deployed post-training quantization for efficient on-vehicle inference of large neural
+          policies on edge compute.</li>
+      </ul></div></li>
+    <li><span class="when">Oct 2021 &ndash; May 2022</span><div class="what"><b>Research Scientist</b> &middot; Toyota Research Institute
+      <div class="where">Los Altos, CA</div>
+      <p>Developed a reinforcement learning algorithm for learning robust driving policies in multi-task, multi-agent
+        settings under uncertainty over agent behaviors (AISTATS 2023).</p></div></li>
+    <li><span class="when">Aug 2016 &ndash; Sep 2021</span><div class="what"><b>Graduate Research Assistant</b> &middot; Interactive Computing, Georgia Institute of Technology
+      <div class="where">Atlanta, GA</div>
+      <p>PhD research on deep reinforcement learning for robot control: error-aware policy learning (RSS 2021),
+        sim-to-real transfer for biped locomotion (IROS 2019), fall prevention with an assistive exoskeleton
+        (ICRA 2020), relay networks (CoRL 2018), and safe falling (IROS 2017).</p></div></li>
+    <li><span class="when">Summers 2019 &amp; 2020</span><div class="what"><b>Research Intern</b> &middot; NVIDIA Research
+      <div class="where">Redmond, WA</div>
+      <p>Contextual reinforcement learning of visuo-tactile multi-fingered grasping (NeurIPS 2020 workshop), and
+        curriculum-learned joint-space control with sub-1&nbsp;cm end-effector error on a robot arm (IROS 2021).</p></div></li>
+    <li><span class="when">May &ndash; Aug 2017</span><div class="what"><b>Lab Associate</b> &middot; Disney Research
+      <div class="where">Pittsburgh, PA</div>
+      <p>Developed a curriculum learning algorithm to improve a model-based humanoid balance controller using deep
+        reinforcement learning and adaptive sampling.</p></div></li>
+    <li><span class="when">Dec 2015 &ndash; Jun 2016</span><div class="what"><b>Research Assistant</b> &middot; CSE Department, University of Washington
+      <div class="where">Seattle, WA</div>
+      <p>System identification and model predictive control of pneumatic cylinder actuators for the Adroit hand.</p></div></li>
+  </ul>
+
+  <h3>Education</h3>
+  <ul class="timeline">
+    <li><span class="when">2016 &ndash; 2021</span><div class="what"><b>Ph.D. in Robotics</b> &middot; Georgia Institute of Technology
+      <div class="where">Atlanta, GA &middot; advised by C. Karen Liu and Sehoon Ha</div></div></li>
+    <li><span class="when">2014 &ndash; 2016</span><div class="what"><b>M.S. in Mechanical Engineering</b> &middot; University of Washington
+      <div class="where">Seattle, WA &middot; advised by Vikash Kumar and Emo Todorov</div></div></li>
+  </ul>
+
+  <h3>Skills</h3>
+  <div class="skills">
+    <div><b>Deep learning</b>PyTorch, TensorFlow</div>
+    <div><b>Physics simulators</b>MuJoCo, DART / PyDART, Bullet / PyBullet, PhysX, Flex</div>
+    <div><b>Languages</b>Python, C++</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:vishak.vk@gmail.com">vishak.vk@gmail.com</a></p>
+  <div class="links">
+    <a class="pill" href="https://www.linkedin.com/in/visakcvkumar/">LinkedIn</a>
+    <a class="pill" href="https://scholar.google.com/citations?user=bAn6bEYAAAAJ&amp;hl=en">Google Scholar</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Visak Kumar &middot; Last updated October 2026</div>
+</footer>
+
+<script>
+  (function () {
+    var vids = Array.prototype.slice.call(document.querySelectorAll('video'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    vids.forEach(function (v) {
+      v.removeAttribute('autoplay');
+      if (reduce) { v.controls = true; }
+    });
+    if (reduce) { return; }
+    function play(v) { var p = v.play(); if (p && p.catch) { p.catch(function () {}); } }
+    if (!('IntersectionObserver' in window)) { vids.forEach(play); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { play(e.target); } else { e.target.pause(); } });
+    }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+</script>
+</body>
+</html>
