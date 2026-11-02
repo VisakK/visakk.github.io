@@ -9,4 +9,4 @@ Personal website of Visak Kumar, served by GitHub Pages at https://visakk.github
 - `resume/`, `projects/`, `publications/`, `contact/`: redirects from the old site's paths to the matching section
 
 Project pages live in their own repositories and are served under this domain, e.g.
-https://visakk.github.io/pose-is-not-support/.
+https://visakk.github.io/pose-is-not-support/ and https://visakk.github.io/agentic-tower/.
